@@ -17,11 +17,15 @@ const App = () => {
   const [posts, setPosts] = useState(dummyData);
 
   const likePost = (postId) => {
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.id === postId ? { ...post, likes: post.likes + 1 } : post
-      )
-    );
+    const updatedPosts = posts.map(post => {
+      if (post.id === postId) {
+        return {...post, likes: post.likes + 1};
+      }else {
+        return post;
+      }
+    })
+    
+    setPosts(updatedPosts);
   };
 
   return (
